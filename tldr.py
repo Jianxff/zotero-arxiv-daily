@@ -51,6 +51,8 @@ def get_paper_tldr(paper:arxiv.Result, model:Llama | OpenAI, **kwargs) -> str:
     \\begin{abstract}__ABSTRACT__\\end{abstract}
     __INTRODUCTION__
     __CONCLUSION__
+
+    You must reply in ZH-CN.
     """
     prompt = prompt.replace('__TITLE__', paper.title)
     prompt = prompt.replace('__ABSTRACT__', paper.summary)
@@ -64,7 +66,7 @@ def get_paper_tldr(paper:arxiv.Result, model:Llama | OpenAI, **kwargs) -> str:
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an assistant who perfectly summarizes scientific paper, and gives the core idea of the paper to the user.",
+                    "content": "You are an assistant who perfectly summarizes scientific paper, and gives the core idea of the paper to the user. Reply in ZH-CN.",
                 },
                 {"role": "user", "content": prompt},
             ],
@@ -77,7 +79,7 @@ def get_paper_tldr(paper:arxiv.Result, model:Llama | OpenAI, **kwargs) -> str:
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an assistant who perfectly summarizes scientific paper, and gives the core idea of the paper to the user.",
+                    "content": "You are an assistant who perfectly summarizes scientific paper, and gives the core idea of the paper to the user. Reply in ZH-CN.",
                 },
                 {"role": "user", "content": prompt},
             ],
