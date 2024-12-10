@@ -45,14 +45,12 @@ def get_paper_tldr(paper:arxiv.Result, model:Llama | OpenAI, **kwargs) -> str:
         introduction, conclusion = get_paper_summary(paper)
     except:
         introduction, conclusion = "", ""
-    prompt = """Given the title, abstract, introduction and the conclusion (if any) of a paper in latex format, generate a one-sentence TLDR summary:
+    prompt = """给定一篇latex格式的论文的title、abstract、introduction和conclusion（如果有的话），生成一个一句话的TLDR总结，用中文回复：
     
     \\title{__TITLE__}
     \\begin{abstract}__ABSTRACT__\\end{abstract}
     __INTRODUCTION__
     __CONCLUSION__
-
-    You must reply in ZH-CN.
     """
     prompt = prompt.replace('__TITLE__', paper.title)
     prompt = prompt.replace('__ABSTRACT__', paper.summary)
@@ -66,7 +64,7 @@ def get_paper_tldr(paper:arxiv.Result, model:Llama | OpenAI, **kwargs) -> str:
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an assistant who perfectly summarizes scientific paper, and gives the core idea of the paper to the user. Reply in ZH-CN.",
+                    "content": "你是一个完美总结科技论文的助手，并将论文的核心思想传达给用户。",
                 },
                 {"role": "user", "content": prompt},
             ],
@@ -79,7 +77,7 @@ def get_paper_tldr(paper:arxiv.Result, model:Llama | OpenAI, **kwargs) -> str:
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an assistant who perfectly summarizes scientific paper, and gives the core idea of the paper to the user. Reply in ZH-CN.",
+                    "content": "你是一个完美总结科技论文的助手，并将论文的核心思想传达给用户。",
                 },
                 {"role": "user", "content": prompt},
             ],
